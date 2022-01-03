@@ -1,0 +1,11 @@
+package mobileBrowser;
+
+public class BrowserActivity extends BrowserSettings {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		AndroidDriver <AndroidElement> driver = BrowserSettings();
+
+	}
+
+}

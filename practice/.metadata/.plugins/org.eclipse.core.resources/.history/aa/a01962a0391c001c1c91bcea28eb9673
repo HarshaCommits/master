@@ -1,0 +1,15 @@
+package mobileBrowser;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class BrowserSettings {
+
+	public static void main(String[] args) {
+		
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capa
+		
+
+	}
+
+}

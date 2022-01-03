@@ -1,0 +1,38 @@
+package realApp;
+
+public static void OrderingItems(String name) {
+
+	 driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.androidsample.generalstore:id/rvProductList\")).scrollIntoView(new UiSelector().textMatches(name).instance(0))"));
+	 int count=driver.findElements(By.id("com.androidsample.generalstore:id/productName")).size();
+
+	    for(int i=0;i<count;i++)
+
+	     {
+         String text=driver.findElements(By.id("com.androidsample.generalstore:id/productName")).get(i).getText();
+         if(text.equalsIgnoreCase("name"))
+	     {
+          driver.findElements(By.id("com.androidsample.generalstore:id/productAddCart")).get(i).click();
+          break;
+	     }
+	     }
+
+	    
+
+	     driver.findElement(By.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
+
+	      
+
+	 String lastpageText=    driver.findElement(By.id("com.androidsample.generalstore:id/productName")).getText();
+
+	 Assert.assertEquals("Jordan 6 Rings", lastpageText);
+
+	      
+
+	      
+
+	      
+
+	 }
+
+	 }
+}

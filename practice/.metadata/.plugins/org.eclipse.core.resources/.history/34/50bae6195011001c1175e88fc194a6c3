@@ -1,0 +1,58 @@
+package realApp;
+
+import java.net.MalformedURLException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+
+public class OrderValue {
+
+	public static void main(String[] args) throws MalformedURLException, InterruptedException {
+		
+		//App Login
+		AndroidDriver<AndroidElement> driver = AppLogin.Capabilities();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Harsha");
+		driver.hideKeyboard();
+		driver.findElement(By.xpath("//*[@text='Female']")).click();
+		driver.findElement(By.id("android:id/text1")).click();
+		driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Argentina\"));");
+		// driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(newUiSelector().scrollable(true).instance(0)).scrollIntoView(newUiSelector().textMatches(\"" + containedText + "\").instance(0))"));
+		driver.findElement(By.xpath("//*[@text='Argentina']")).click();
+		driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
+		
+		//Ordering items and clicking on cart 
+		driver.findElementsByXPath("//*[@text='ADD TO CART']").get(0).click();
+		driver.findElementsByXPath("//*[@text='ADD TO CART']").get(0).click();
+		driver.findElement(By.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
+		
+		//sleep
+		Thread.sleep(3000);
+		
+		//Checking cart amount == Total amount
+		String value01=driver.findElementsById("com.androidsample.generalstore:id/productPrice").get(0).getText();
+		String value02=driver.findElementsById("com.androidsample.generalstore:id/productPrice").get(1).getText();
+		String value03=driver.findElementById("com.androidsample.generalstore:id/totalAmountLbl").getText();
+		value01 =value01.substring(1);
+		value02 =value02.substring(1);
+		value03 =value03.substring(1);
+		Double value1=Double.parseDouble(value01);
+		Double value2=Double.parseDouble(value02);
+		Double sum = value1 + value2;
+		System.out.println(value03);
+		System.out.println(sum);
+		Assert.assertEquals(sum, value03);
+		
+
+	}
+	
+	public getAmount void (String value)
+	{
+		value = value.substring(1);
+	}
+
+}
